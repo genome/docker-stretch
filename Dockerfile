@@ -17,4 +17,9 @@ RUN git clone https://github.com/Oshlack/STRetch.git /opt/stretch \
     && mkdir reference-data \
     && touch reference-data/DUMMY-dedup.sorted.bed \
     && ./install.sh \
-    && rm -rf reference-data
+    && rm -rf reference-data \
+    && ln -s /reference-data reference-data \
+    && mv pipelines/pipeline_config.groovy pipelines/pipeline_config.groovy.template \
+    && ln -s /user-config/pipeline_config.groovy pipelines/pipeline_config.groovy
+
+ENV PATH "$PATH:/opt/stretch/tools/bin"
